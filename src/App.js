@@ -14,8 +14,6 @@ function App() {
   }
 
   const handleCreate = (addEvent) => {
-    console.log(addGift);
-    console.log(user);
     axios.post("http://localhost:3000/events", addEvent).then((response) => {
       console.log(response);
       getEvents();
