@@ -26,6 +26,7 @@ function Add(props) {
 
   return (
     <>
+    <h1>Add An Event</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name of Event:</label>
             <br />
