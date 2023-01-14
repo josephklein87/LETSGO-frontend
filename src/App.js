@@ -16,6 +16,12 @@ function App() {
   let [state, setState] = useState("")
   let [date, setDate] = useState('')
   let [pageState, setPageState]= useState('welcome')
+  const [showAddForm, setShowAddForm]=useState(false)
+
+  const addFormToggle = () => {
+    setShowAddForm(!showAddForm)
+  }
+    
 
 
   const getEvents = () => {
@@ -57,6 +63,7 @@ function App() {
   }
 
   const handleCreate = (addEvent) => {
+    console.log("This is" + addEvent)
     axios.post("http://localhost:3000/events", addEvent).then((response) => {
       console.log(response);
       getEvents();
@@ -71,14 +78,14 @@ function App() {
 
   return (
   <>
-  <Nav setMyUser={setMyUser} myUser={myUser} setGoState={setGoState} setPageState={setPageState}/>
+  <Nav addFormToggle={addFormToggle} setMyUser={setMyUser} myUser={myUser} setGoState={setGoState} setPageState={setPageState} pageState={pageState}/>
 
-  {pageState==="set-location" && myUser.username ? <SetLocation city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate} setPageState={setPageState} /> : null}
-  {/* <Add handleCreate={handleCreate} /> */}
+  {/* {pageState==="set-location" && myUser.username ? <SetLocation city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate} setPageState={setPageState} /> : null} */}
+  {showAddForm ? <Add handleCreate={handleCreate} addFormToggle={addFormToggle}/> : null}
 
 
   {pageState==='welcome'  ? <Welcome goState={goState} setPageState={setPageState} city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate}/> : null}
-  {pageState==='mainpage' ? <Mainpage events={events} setEvents={setEvents} timeConverter={timeConverter} city={city}/> : null }
+  {pageState==='mainpage' || pageState === 'my-events' ? <Mainpage events={events} setEvents={setEvents} timeConverter={timeConverter} city={city} pageState={pageState} myUser={myUser}/> : null }
   </>
   );
 }

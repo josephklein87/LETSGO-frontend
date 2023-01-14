@@ -94,6 +94,7 @@
   flex-direction: column;
   align-items: center;
   margin: 10px;
+  transition: all .3s ease-in-out;
 }
 
 .location-item:hover {
@@ -103,6 +104,11 @@
 .location-new-york:hover > .apple {
   height: 8.2vw;
   width: 8.2vw;
+  transition: all .2s ease-in-out;
+}
+
+.location-new-york:hover > .new-york {
+  color:blue;
 }
 
 .location-name {
@@ -118,12 +124,21 @@
 .location-los-angeles:hover > .palmtree {
   height: 7.3vw;
   width: 7.3vw;
+  transition: all .2s ease-in-out;
+}
+
+.location-los-angeles:hover > .los-angeles {
+  color: green;
 }
 
 .location-chicago:hover > .bull {
   width: 9.4vw;
+  transition: all .2s ease-in-out;
 }
 
+.location-chicago:hover > .chicago {
+  color: red;
+}
 
 .palmtree {
   height: 7.1vw;
@@ -148,6 +163,23 @@
 
 /* nav */
 
+.logo-nav {
+  position: absolute;
+  top: 0 !important;
+  left: 0px!important;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-family: bigjohn;
+  color: rgb(239	132	90	);
+}
+
+.logo-go {
+  font-family: kabel;
+  position: relative;
+  bottom: .51px;
+  font-size: 17px;
+}
+
 .nav-container {
   display: flex;
   justify-content: flex-end;
@@ -162,6 +194,12 @@
 .nav-item {
   margin: 10px;
   color: rgb(239	132	90);
+  transition: all .3s ease-in-out;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: black;
 }
 
 .arrow {
@@ -180,12 +218,32 @@
   margin-top: 10px;
 }
 
+.user-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-toggle:hover {
+  cursor: pointer;
+}
+
+.user-toggle:hover > span  {
+  color: black;
+  cursor: pointer;
+}
+
+.user-toggle:hover > p  {
+  color: black;
+  cursor: pointer;
+}
+
 .dropdown-list{
   display: inline;
   z-index: 2;
   position: absolute;
   top: 40px;
-  width: 100px;
+  width: 150px;
   background-color:  rgb(239	132	90	);
   text-align: center;
   transition: all .3s linear;
@@ -287,17 +345,79 @@
   text-shadow: 1px 1px 4px black;
 }
 
-.create-account-modal {
-  z-index: 2;
+.event-modal-container {
+  position: fixed;
+  color: rgb(239	132	90);
+  width: 40%;
+  background-color: rgb(250	228	150	);
+  border: 2px solid rgb(239	132	90	);
+  top: 10vh;
+  left: 28vw;
+  padding: 40px;
+  text-align: center;
+  border-radius: 20px;
+  min-width: 350px;
+}
+
+.event-modal-container img {
+  width: 350px;
+}
+
+.event-modal-container p {
+  font-family: kabel;
+  font-size: 20px;
+}
+
+.event-modal-container h1 {
+  font-family: bigjohn;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.address {
+  margin-top: 0 !important;
+  margin-bottom: 0;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.x-event {
   position: absolute;
-  top: 18vh;
-  left: 44vw;
+  top: -10px;
+  right: 10px;
+  font-size: 30px !important;
+}
+
+.x-event:hover {
+  cursor: pointer;
+  color: black;
+}
+
+/* account creation and sign in */
+
+.create-account-modal, .event-, .add-form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.187) !important;
+  overflow: auto;
 }
 
 .create-account-container {
+  position: absolute;
   font-family: kabel;
   color: rgb(239	132	90);
   width: 400px;
+  background-color: rgb(250	228	150	);
+  border: 2px solid rgb(239	132	90	);
+  top: 22vh;
+  left: 36vw;
+  padding: 10px 20px;
 }
 
 .create-account-container h1 {
@@ -314,6 +434,15 @@
 .account-submit {
  margin-left: auto !important;
  margin-right: auto !important;
+}
+
+.account-submit:hover {
+  color: black;
+}
+
+.x:hover {
+  color: black;
+  cursor: pointer;
 }
 
 .hidden {
@@ -337,10 +466,32 @@
 
 /* add form styling */
 
+.add-form-container {
+  position: absolute;
+  color: rgb(239	132	90);
+  width: 40%;
+  background-color: rgb(250	228	150	);
+  border: 2px solid rgb(239	132	90	);
+  top: 10vh;
+  left: 28vw;
+  padding: 40px;
+  text-align: center;
+  border-radius: 20px;
+  min-width: 350px;
+  overflow: scroll;
+}
+
+.add-form-container h1 {
+  font-family: bigjohn;
+}
+
 .add-form {
-  width: 400px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: scroll;
 }
 
 .city-state-zip {

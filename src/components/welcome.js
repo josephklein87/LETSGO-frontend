@@ -33,7 +33,7 @@ function Welcome(props) {
                 <h4 className='find-things'>FIND SOMETHING FUN</h4>
             </div>
             <div className='right-div'>
-                <h1 className={props.goState}>GO</h1>
+                <h1 className="go">GO</h1>
                 <div className='locations-div'>
                     <div className='location-item location-new-york' name="new-york" onClick={goToNewYork}>
                         <img className='location-icon apple' src={apple} />   

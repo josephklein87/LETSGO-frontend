@@ -68,7 +68,6 @@ function Nav(props) {
             e.target.reset()
             setError("")
             setShowCreate(false)
-            props.setPageState('set-location')
           }
         })
       }
@@ -100,22 +99,34 @@ function Nav(props) {
             e.target.reset()
             setError('');
             setShowLogin(false);
-            props.setPageState('set-location')
           }
         })
       }
 
     return(
         <>
+        {props.pageState !== "welcome" ? <p className='logo-nav'>LETS<span className='logo-go'>GO</span></p> : null}
         <div className='nav-container'>
             {props.myUser.username ?
             <>
+            {props.pageState !== "welcome" ?
+            <>
+            <p className='nav-item'>HOME</p>
+            <p className='nav-item' onClick={props.addFormToggle}>ADD EVENT</p>
+            <p className='nav-item'>CHANGE CITY</p>
+            </>
+            :
+            null
+            }
+            <div className='user-toggle' onClick={changeArrow}>
             <span className={arrowState} >
                     change_history
             </span>
-            <p className='nav-item' data-toggle="dropdown" id="username" onClick={changeArrow}>{props.myUser.username}</p>
+            <p className='nav-item' data-toggle="dropdown" id="username">{props.myUser.username}</p>
+            </div>
 
             <div className={dropDownState}>
+            <p className='nav-item' type="button" id="profile" onClick={()=>{props.setPageState("my-events")}}>MY PROFILE</p>
             <p className='nav-item' type="button" id="logout" onClick={()=>{props.setMyUser({})}}>LOGOUT</p>
             </div>
             
