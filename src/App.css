@@ -1,19 +1,244 @@
+@font-face {
+  font-family: bigjohn;
+  src: url('./fonts/BIG JOHN.otf')
+}
+
+@font-face {
+  font-family: slimjoe;
+  src: url('./fonts/Slim Joe.otf')
+}
+
+@font-face {
+  font-family: kabel;
+  src: url('./fonts/Kabel Book BT_0.ttf')
+}
+
+.html, body {
+  background-color: rgb(250	228	150	);
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+/* welcome screen */
+
+.welcome-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.right-div {
+  display: flex;
+  background-color: rgb(250	228	150	)	;
+  flex-grow: 1;
+  justify-content: flex-start;
+  width: 40vw;
+  align-items: flex-start;
+ flex-direction: column;
+}
+
+.left-div {
+ display: flex;
+ background-color:  rgb(239	132	90	);
+ flex-grow: 1;
+ align-items: flex-end;
+ flex-direction: column;
+}
+
+.welcome-header {
+  font-size: 10vw;
+  font-family: bigjohn;
+  text-align: center;
+  margin-top: 32vh;
+  color: rgb(250	228	150	);
+  height: 8vw;
+ 
+}
+
+.find-things {
+  color: rgb(250	228	150	);
+  font-family: kabel;
+  margin-right: 14px;
+  font-size: 2.5vw;
+}
+
+.go {
+  font-family: slimjoe;
+  font-size: 10vw;
+  margin-top: 32vh;
+  color: rgb(239	132	90	);
+  height: 8.5vw;
+  
+}
+
+.apple {
+  height: 8vw;
+  width: 8vw;
+}
+
+/* .apple:hover {
+  height: 8.2vw;
+  width: 8.2vw;
+} */
+
+.location-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.location-item:hover {
+  cursor: pointer;
+}
+
+.location-new-york:hover > .apple {
+  height: 8.2vw;
+  width: 8.2vw;
+}
+
+.location-name {
+  color: rgb(239	132	90	);
+  font-family: kabel;
+  font-size: 2vw;
+}
+
+.locations-div {
+  display: flex;
+}
+
+.location-los-angeles:hover > .palmtree {
+  height: 7.3vw;
+  width: 7.3vw;
+}
+
+.location-chicago:hover > .bull {
+  width: 9.4vw;
+}
+
+
+.palmtree {
+  height: 7.1vw;
+  width: 7.1vw;
+  margin-top: .9vw
+}
+
+/* .palmtree:hover {
+  height: 7.3vw;
+  width: 7.3vw;
+
+} */
+
+.bull {
+  width: 9.2vw;
+}
+
+/* .bull:hover {
+  width: 9.4vw;
+} */
+
+
+/* nav */
+
 .nav-container {
   display: flex;
   justify-content: flex-end;
-  background-color: bisque;
+  z-index: 3;
+  background-color: none;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .nav-item {
   margin: 10px;
+  color: rgb(239	132	90);
+}
+
+.arrow {
+  color: rgb(239	132	90);
+  transform: rotate(-90deg);
+  text-align: right;
+  height: 10px;
+  transition: all .3s ease-in-out;
+}
+
+.arrow-turned {
+  color: rgb(239	132	90);
+  transform: rotate(-180deg);
+  transition: all .3s ease-in-out;
+  margin-right: -8px;
+  margin-top: 10px;
+}
+
+.dropdown-list{
+  display: inline;
+  z-index: 2;
+  position: absolute;
+  top: 40px;
+  width: 100px;
+  background-color:  rgb(239	132	90	);
+  text-align: center;
+  transition: all .3s linear;
+}
+
+.dropdown-hidden {
+  display: none;
+  z-index: 2;
+  position: absolute;
+  top: 40px;
+  width: 100px;
+  background-color:  rgb(239	132	90	);
+  text-align: center;
+  height: 0! important;
+  transition: all .3s linear;
+}
+
+.dropdown-list p {
+  color: rgb(250	228	150	);
+}
+
+/* set up form */
+
+.set-up-form {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30vh;
+}
+
+.set-up-form p {
+  margin-bottom: 0;
+  margin-top: 10px;
+  text-align: center;
+  color: rgb(239	132	90	);
+  font-family: kabel;
+  font-size: 18px;
+}
+
+.button-div input {
+  font-family: kabel;
 }
 
 
+/* main page */
 
-
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .event-frontpage-container {
-  width: 400px;
+  width: 350px;
   height: 200px;
   margin: 20px;
   text-align: right;
@@ -22,22 +247,130 @@
   justify-content: flex-end;
   background-size: cover !important;
   transition: all .2s ease-in-out;
+  box-shadow: 5px 5px 0px rgb(239	132	90	);
   
 }
 
+.header-container {
+  margin-top: 60px;
+  margin-left: 10px;
+}
+
+.mainpage-header {
+  font-family: kabel;
+  color: rgb(239	132	90);
+  font-size: 5vw;
+  margin-left: 3vw;
+}
+
+.city-header {
+  font-family: bigjohn;
+  color: rgb(239	132	90);
+  font-size: 10vw;
+}
 
 
 .event-frontpage-container:hover {
-  width: 410px;
+  width: 360px;
   height: 205px;
-  transform: translate(-1%, 0)
+  transform: translate(-1%, 0);
 }
 
 
 .tile-time, .tile-header {
+  font-size: 20px;
+  font-family: bigjohn;
   margin-right: 10px;
   margin-top: 0;
-  color: yellow;
+  color: rgb(201	253	254	);
   margin-bottom: 4px;
   text-shadow: 1px 1px 4px black;
+}
+
+.create-account-modal {
+  z-index: 2;
+  position: absolute;
+  top: 18vh;
+  left: 44vw;
+}
+
+.create-account-container {
+  font-family: kabel;
+  color: rgb(239	132	90);
+  width: 400px;
+}
+
+.create-account-container h1 {
+  margin-bottom: 20px !important;
+}
+
+.create-account-container form label {
+  font-size: 24px;
+}
+.create-account-container h1 {
+  text-align: center;
+}
+
+.account-submit {
+ margin-left: auto !important;
+ margin-right: auto !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.button-div{
+  text-align: center;
+}
+
+.button-div input {
+  color: rgb(239	132	90);
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.x {
+  text-align: right;
+  font-size: 24px;
+}
+
+/* add form styling */
+
+.add-form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.city-state-zip {
+  display: flex;
+  justify-content: space-between;
+}
+
+.state-row {
+  margin-left: 10px;
+  margin-right: 10px
+}
+
+.check-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+}
+
+.check-box-div {
+  display: flex;
+  justify-content: center;
+}
+
+.time-event {
+  width: 195px;
+}
+
+.submit-btn {
+  text-align: center;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }

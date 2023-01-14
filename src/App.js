@@ -4,13 +4,27 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 import Add from './components/Add';
 import Nav from './components/nav';
+import Welcome from './components/welcome';
+import Mainpage from './components/mainpage';
+import SetLocation from './components/setlocation';
 
 function App() {
   let [events, setEvents] = useState([])
   let [myUser, setMyUser] = useState({})
+  let [goState, setGoState]=useState("go")
+  let [city, setCity] = useState("")
+  let [state, setState] = useState("")
+  let [date, setDate] = useState('')
+  let [pageState, setPageState]= useState('welcome')
+
 
   const getEvents = () => {
-    axios.get("http://localhost:3000/events").then((res)=> {
+    const locationObj = {
+      city1: city,
+      state1: state
+    }
+    axios.put("http://localhost:3000/events/test", locationObj).then((res)=> {
+      console.log(res.data)
       setEvents(res.data)
       console.log(events)
     } )
@@ -46,35 +60,25 @@ function App() {
     axios.post("http://localhost:3000/events", addEvent).then((response) => {
       console.log(response);
       getEvents();
+      document.querySelector(".add-form").reset()
     });
   };
 
   useEffect(()=> {
     getEvents()
-  }, []);
+  }, [pageState]);
 
 
   return (
   <>
-  <Nav setMyUser={setMyUser} myUser={myUser} />
-  <Add handleCreate={handleCreate} />
+  <Nav setMyUser={setMyUser} myUser={myUser} setGoState={setGoState} setPageState={setPageState}/>
+
+  {pageState==="set-location" && myUser.username ? <SetLocation city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate} setPageState={setPageState} /> : null}
+  {/* <Add handleCreate={handleCreate} /> */}
 
 
-  {events.map((event => { 
-    return (
-      <>
-        <div className="event-frontpage-container" style={{background: `linear-gradient(
-          rgba(0, 0, 0, 0.2), 
-          rgba(0, 0, 0, 0.2)
-        ), url(${event.picture})`}}>
-          <h2 className='tile-time'>{timeConverter(event.time)}</h2>
-          <h2 className='tile-header'>{event.name}</h2>
-        </div>
-      </>
-    )
-  }))}
-
-
+  {pageState==='welcome'  ? <Welcome goState={goState} setPageState={setPageState} city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate}/> : null}
+  {pageState==='mainpage' ? <Mainpage events={events} setEvents={setEvents} timeConverter={timeConverter} city={city}/> : null }
   </>
   );
 }
