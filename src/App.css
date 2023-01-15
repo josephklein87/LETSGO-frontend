@@ -287,6 +287,11 @@
   font-family: kabel;
 }
 
+.button-div button {
+  font-family: kabel;
+  color: rgb(239	132	90	);
+  border: none !important;
+}
 
 /* main page */
 
@@ -332,10 +337,11 @@
   width: 360px;
   height: 205px;
   transform: translate(-1%, 0);
+  cursor: pointer;
 }
 
 
-.tile-time, .tile-header {
+.tile-time, .tile-header, .tile-date {
   font-size: 20px;
   font-family: bigjohn;
   margin-right: 10px;
@@ -345,8 +351,21 @@
   text-shadow: 1px 1px 4px black;
 }
 
+.tile-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.tile-date {
+  margin-top: 10px;
+  margin-left: 10px;
+  text-align: left;
+}
+
 .event-modal-container {
-  position: fixed;
+  position: absolute;
   color: rgb(239	132	90);
   width: 40%;
   background-color: rgb(250	228	150	);
@@ -357,10 +376,13 @@
   text-align: center;
   border-radius: 20px;
   min-width: 350px;
+  overflow: auto;
 }
 
 .event-modal-container img {
-  width: 350px;
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .event-modal-container p {
@@ -395,9 +417,18 @@
   color: black;
 }
 
+.button-div button {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.button-div button:hover {
+  color: black;
+}
+
 /* account creation and sign in */
 
-.create-account-modal, .event-, .add-form-modal {
+.create-account-modal, .event-modal, .add-form-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -492,6 +523,8 @@
   margin-right: auto;
   margin-left: auto;
   overflow: scroll;
+  font-family: kabel;
+  font-size: 20px;
 }
 
 .city-state-zip {

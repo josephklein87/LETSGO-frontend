@@ -1,17 +1,24 @@
 import '../App.css';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
+import Edit from './editform';
 
 function Mainpage(props) {
 
     let [modal, setModal] = useState({})
     let [showModal, setShowModal] = useState(false)
+    let [showEditForm, setShowEditForm] = useState(false)
 
     const openModal=(eventID)=>{
         axios.get('http://localhost:3000/events/' + eventID ).then((res) => {
             setModal(res.data[0])
             setShowModal(true)
         })
+    }
+
+    const toggleEdit = () => {
+        setShowEditForm(!showEditForm)
+        setShowModal(!showModal)
     }
 
     const dateConverter = (thisDate) => {
@@ -23,6 +30,15 @@ function Mainpage(props) {
 
         return(
             `${month}/${day}/${year}`
+        )
+    }
+
+    const deleteEvent = (eventID) => {
+        axios.delete('http://localhost:3000/events/' + eventID).then(req => {
+            props.getEvents()
+            setShowModal(false)
+        }
+
         )
     }
 
@@ -56,8 +72,15 @@ function Mainpage(props) {
                 rgba(0, 0, 0, 0.2), 
                 rgba(0, 0, 0, 0.2)
                 ), url(${event.picture})`}} onClick={()=>{openModal(event.id)}}>
-                <h2 className='tile-time'>{props.timeConverter(event.time)}</h2>
-                <h2 className='tile-header'>{event.name}</h2>
+                <div className='tile-flex'>
+                    <div className='top-section'>
+                        <h2 className='tile-date'>{dateConverter(event.date)}</h2>
+                    </div>
+                    <div className='bottom-section'>
+                        <h2 className='tile-time'>{props.timeConverter(event.time)}</h2>
+                        <h2 className='tile-header'>{event.name}</h2>
+                    </div>
+                </div>
                 </div>
             </>
             )
@@ -77,9 +100,18 @@ function Mainpage(props) {
             <p className='address'>{modal.city}, {modal.state} {modal.zip}</p>
             <p className='description'>{modal.description}</p>
             <a href={modal.link}>LINK TO EVENT</a>
+            <br />
+            <div className='button-div'>
+            <button className='btn' onClick={toggleEdit}>EDIT</button> <button className='btn' onClick={()=>{deleteEvent(modal.id)}}>DELETE</button>
+            </div>
         </div>
     </div>
     </>
+    :
+    null
+    }
+    {showEditForm ? 
+    <Edit dateConverter={dateConverter} toggleEdit={toggleEdit} setModal={setModal} setShowModal={setShowModal} modal={modal}/>
     :
     null
     }

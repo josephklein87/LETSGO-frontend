@@ -85,7 +85,7 @@ function App() {
 
 
   {pageState==='welcome'  ? <Welcome goState={goState} setPageState={setPageState} city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate}/> : null}
-  {pageState==='mainpage' || pageState === 'my-events' ? <Mainpage events={events} setEvents={setEvents} timeConverter={timeConverter} city={city} pageState={pageState} myUser={myUser}/> : null }
+  {pageState==='mainpage' || pageState === 'my-events' ? <Mainpage events={events} getEvents={getEvents} setEvents={setEvents} timeConverter={timeConverter} city={city} pageState={pageState} myUser={myUser}/> : null }
   </>
   );
 }
