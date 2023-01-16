@@ -61,7 +61,7 @@ function Mainpage(props) {
     </div>
 
     {props.pageState === "my-events" && props.myUser.username ?
-        <h4>MY SUBMITTED EVENTS</h4> : 
+        <h4 className='my-submitted'>MY SUBMITTED EVENTS</h4> : 
         null
     }
     <div className='events-container'>
@@ -94,6 +94,8 @@ function Mainpage(props) {
             <p className='x-event' onClick={()=>{setShowModal(false)}}>x</p>
             <img src={modal.picture} />
             <h1>{modal.name}</h1>
+            {modal.submitted_by ?
+            <p>Submitted by: {modal.submitted_by}</p> : null}
             <p>{dateConverter(modal.date)}</p>
             <p>{props.timeConverter(modal.time)}</p>
             <p className='address'>{modal.street}</p>
@@ -102,7 +104,14 @@ function Mainpage(props) {
             <a href={modal.link}>LINK TO EVENT</a>
             <br />
             <div className='button-div'>
+            
+            {modal.submitted_by === props.myUser.username ?
+            <>
             <button className='btn' onClick={toggleEdit}>EDIT</button> <button className='btn' onClick={()=>{deleteEvent(modal.id)}}>DELETE</button>
+            </>
+            :
+            null }
+
             </div>
         </div>
     </div>

@@ -23,6 +23,13 @@ function Nav(props) {
       
     }
 
+    //change back to HOME PAGE
+
+    const backToMainPage = () => {
+      props.setPageState("mainpage")
+      props.getEvents()
+    }
+
 
 
    //function to reveal account related modals using an if else statement to separate function by id of element 
@@ -103,6 +110,20 @@ function Nav(props) {
         })
       }
 
+      //FUNCTION SHOW USER PROFILE PAGE AND USER SUBMITTED EVENTS
+
+      const showMyPage = () => {
+        let profileObject = {
+          thisUser: props.myUser.username
+        }
+        console.log(props.myUser.username)
+        props.setPageState("my-events")
+        axios.put('http://localhost:3000/events/myEvents', profileObject).then(res=>{
+          console.log(res.data)
+          props.setEvents(res.data)
+        })
+      }
+
     return(
         <>
         {props.pageState !== "welcome" ? <p className='logo-nav'>LETS<span className='logo-go'>GO</span></p> : null}
@@ -111,13 +132,13 @@ function Nav(props) {
             <>
             {props.pageState !== "welcome" ?
             <>
-            <p className='nav-item'>HOME</p>
+            <p className='nav-item' onClick={backToMainPage}>HOME</p>
             <p className='nav-item' onClick={props.addFormToggle}>ADD EVENT</p>
-            <p className='nav-item'>CHANGE CITY</p>
             </>
             :
             null
             }
+             <p className='nav-item'>CHANGE CITY</p>
             <div className='user-toggle' onClick={changeArrow}>
             <span className={arrowState} >
                     change_history
@@ -126,7 +147,7 @@ function Nav(props) {
             </div>
 
             <div className={dropDownState}>
-            <p className='nav-item' type="button" id="profile" onClick={()=>{props.setPageState("my-events")}}>MY PROFILE</p>
+            <p className='nav-item' type="button" id="profile" onClick={showMyPage}>MY PROFILE</p>
             <p className='nav-item' type="button" id="logout" onClick={()=>{props.setMyUser({})}}>LOGOUT</p>
             </div>
             
