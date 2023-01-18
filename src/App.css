@@ -438,13 +438,13 @@
   width: 40%;
   background-color: rgb(250	228	150	);
   border: 2px solid rgb(239	132	90	);
-  top: 10vh;
-  left: 28vw;
-  padding: 40px;
+  padding: 20px;
   text-align: center;
   border-radius: 20px;
   min-width: 350px;
   overflow: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .event-modal-container img {
@@ -486,7 +486,7 @@
 }
 
 .button-div button {
-  margin-top: 20px;
+  margin-top: 0px;
   font-size: 20px;
 }
 
@@ -728,4 +728,12 @@
   margin-top: 5px;
 }
 
+}
+
+@media (max-width: 540px) {
+  .event-modal-container {
+    padding: 30px;
+    width: 375px;
+    height: 660px;
+  }
 }

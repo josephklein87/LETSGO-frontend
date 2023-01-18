@@ -35,7 +35,7 @@ function Edit(props) {
     <>
     <div className='add-form-modal'>
     <div className='add-form-container'>
-      <p className='x-event' onClick={props.addFormToggle}>x</p>
+      <p className='x-event' onClick={props.toggleEdit}>x</p>
     <h1 >EDIT YOUR EVENT</h1>
         <form className ="add-form" onSubmit={handleSubmit}>
             <div class="form-group">
