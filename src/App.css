@@ -163,6 +163,20 @@
 
 /* nav */
 
+.menu-toggle {
+  color: rgb(239	132	90);
+}
+
+.menu-toggle:hover {
+  cursor: pointer;
+  color: black;
+  transition: all .3s ease-in-out;
+}
+
+.large-screen {
+  display: flex;
+}
+
 .logo-nav {
   position: absolute;
   top: 0 !important;
@@ -238,6 +252,30 @@
   cursor: pointer;
 }
 
+.login-list {
+  display: inline;
+  z-index: 2;
+  position: absolute;
+  top: 25px;
+  width: 200px;
+  right: 0px;
+  background-color:  rgb(239	132	90	);
+  text-align: center;
+  transition: all .3s linear;
+  color: rgb(250	228	150	)!important;
+}
+
+.login-hidden {
+  display: none;
+  position: absolute;
+  top: 0px;
+  transition: all .3s linear;
+}
+
+.login-list .nav-item {
+  color: rgb(250	228	150	)!important;
+}
+
 .dropdown-list{
   display: inline;
   z-index: 2;
@@ -294,10 +332,24 @@
 }
 
 /* main page */
+.date-div {
+  display: flex;
+  justify-content: center;
+}
+
+.date-picker {
+  text-align: center;
+  width: 150px;
+}
+
+.reset-btn {
+  margin-left: 10px;
+}
 
 .events-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .event-frontpage-container {
@@ -429,6 +481,9 @@
 /* account creation and sign in */
 
 .create-account-modal, .event-modal, .add-form-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -440,14 +495,12 @@
 }
 
 .create-account-container {
-  position: absolute;
+  position: fixed;
   font-family: kabel;
   color: rgb(239	132	90);
   width: 400px;
   background-color: rgb(250	228	150	);
   border: 2px solid rgb(239	132	90	);
-  top: 22vh;
-  left: 36vw;
   padding: 10px 20px;
 }
 
@@ -565,4 +618,18 @@
   font-family: bigjohn;
   text-align: center;
   color: black;
+}
+
+.small-screen {
+  display: none
+}
+
+@media (max-width: 540px) {
+.large-screen {
+  display: none;
+}
+
+.small-screen {
+  display: inline;
+}
 }

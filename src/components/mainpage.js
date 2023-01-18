@@ -9,6 +9,23 @@ function Mainpage(props) {
     let [showModal, setShowModal] = useState(false)
     let [showEditForm, setShowEditForm] = useState(false)
 
+    const datePicker = (e) => {
+        let dateObj = {
+            city1: props.city,
+            state1: props.state,
+            date1: e.target.value
+        }
+        axios.put('http://localhost:3000/events/date', dateObj).then(res => {
+            props.setEvents(res.data)
+        })
+    }
+
+    const clear = e => {
+        e.preventDefault()
+        document.querySelector(".date-picker").value = null;
+        props.getEvents()
+    }
+
     const openModal=(eventID)=>{
         axios.get('http://localhost:3000/events/' + eventID ).then((res) => {
             setModal(res.data[0])
@@ -49,6 +66,10 @@ function Mainpage(props) {
         <>
         <h1 className='mainpage-header'>THINGS TO DO IN</h1>
         <h1 className='city-header'>{props.city.toUpperCase()}</h1>
+            <div className='date-div'>
+                <input className='date-picker form-control' type="date" onChange={datePicker}></input>
+                <button className='btn btn-danger reset-btn' onClick={clear}>RESET</button>
+            </div>
         </>
         : null }
         {props.pageState === "my-events" && props.myUser.username ?

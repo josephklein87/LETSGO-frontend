@@ -11,6 +11,7 @@ function Nav(props) {
     let [error, setError] = useState('')
     let [arrowState, setArrowState] = useState("material-symbols-outlined arrow")
     let [dropDownState, setDropDownState] = useState("dropdown-hidden")
+    let [smallScreenDropdown, setSmallScreenDropdown] = useState("login-hidden")
 
     const changeArrow = () => {
       if (arrowState ==="material-symbols-outlined arrow") {
@@ -21,6 +22,15 @@ function Nav(props) {
         setDropDownState("dropdown-hidden")
       }
       
+    }
+
+    const smallScreenDropdownToggle = () => {
+      if (smallScreenDropdown === "login-hidden") {
+        setSmallScreenDropdown("login-list")
+      } else {
+        setSmallScreenDropdown("login-hidden")
+      }
+      console.log(smallScreenDropdown)
     }
 
     //change back to HOME PAGE
@@ -44,6 +54,9 @@ function Nav(props) {
             setShowLogin(false)
             props.setGoState("hidden")
             setError("")
+        }
+        if (smallScreenDropdown === "login-list") {
+          setSmallScreenDropdown("login-hidden")
         }
     }
     
@@ -118,6 +131,8 @@ function Nav(props) {
         }
         console.log(props.myUser.username)
         props.setPageState("my-events")
+        setDropDownState("dropdown-hidden")
+        changeArrow()
         axios.put('http://localhost:3000/events/myEvents', profileObject).then(res=>{
           console.log(res.data)
           props.setEvents(res.data)
@@ -132,13 +147,14 @@ function Nav(props) {
             <>
             {props.pageState !== "welcome" ?
             <>
-            <p className='nav-item' onClick={backToMainPage}>HOME</p>
+            <p className='nav-item' onClick={backToMainPage}>{props.city.toUpperCase()}</p>
             <p className='nav-item' onClick={props.addFormToggle}>ADD EVENT</p>
+            <p className='nav-item' onClick={()=>{props.setPageState("welcome")}}>CHANGE CITY</p>
             </>
             :
             null
             }
-             <p className='nav-item'>CHANGE CITY</p>
+            
             <div className='user-toggle' onClick={changeArrow}>
             <span className={arrowState} >
                     change_history
@@ -148,14 +164,27 @@ function Nav(props) {
 
             <div className={dropDownState}>
             <p className='nav-item' type="button" id="profile" onClick={showMyPage}>MY PROFILE</p>
-            <p className='nav-item' type="button" id="logout" onClick={()=>{props.setMyUser({})}}>LOGOUT</p>
+            <p className='nav-item' type="button" id="logout" onClick={()=>{props.setMyUser({});setDropDownState("dropdown-hidden");changeArrow()}}>LOGOUT</p>
             </div>
             
             </>
             :
             <>
-            <p className='nav-item' id="login-button" onClick={revealAccountModal}>LOG IN</p>
-            <p className='nav-item' id="create-acc-button" onClick={revealAccountModal}>CREATE ACCOUNT</p>
+            <div className="large-screen">
+              {props.pageState !== "welcome" ? <p className='nav-item' onClick={()=>{props.setPageState("welcome")}}>CHANGE CITY</p> : null}
+              <p className='nav-item' id="login-button" onClick={revealAccountModal}>LOG IN</p>
+              <p className='nav-item' id="create-acc-button" onClick={revealAccountModal}>CREATE ACCOUNT</p>
+            </div>
+            <div className="small-screen">
+              <span class="material-symbols-outlined menu-toggle" onClick={smallScreenDropdownToggle}>
+                menu
+              </span>
+              <div className={smallScreenDropdown}>
+                <p className='nav-item' id="login-button" onClick={revealAccountModal}>LOG IN</p>
+                <p className='nav-item' id="create-acc-button" onClick={revealAccountModal}>CREATE ACCOUNT</p>
+                {props.pageState !== "welcome" ? <p className='nav-item' onClick={()=>{props.setPageState("welcome");smallScreenDropdownToggle()}}>CHANGE CITY</p> : null}
+               </div> 
+            </div>
             </>
             }
 

@@ -80,12 +80,11 @@ function App() {
   <>
   <Nav setEvents={setEvents} getEvents={getEvents} addFormToggle={addFormToggle} setMyUser={setMyUser} myUser={myUser} setGoState={setGoState} setPageState={setPageState} pageState={pageState} city={city} state={state}/>
 
-  {/* {pageState==="set-location" && myUser.username ? <SetLocation city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate} setPageState={setPageState} /> : null} */}
   {showAddForm ? <Add handleCreate={handleCreate} addFormToggle={addFormToggle} myUser={myUser} city={city} state={state}/> : null}
 
 
   {pageState==='welcome'  ? <Welcome goState={goState} setPageState={setPageState} city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate}/> : null}
-  {pageState==='mainpage' || pageState === 'my-events' ? <Mainpage events={events} getEvents={getEvents} setEvents={setEvents} timeConverter={timeConverter} city={city} pageState={pageState} myUser={myUser}/> : null }
+  {pageState==='mainpage' || pageState === 'my-events' ? <Mainpage events={events} getEvents={getEvents} setEvents={setEvents} timeConverter={timeConverter} city={city} state={state} pageState={pageState} myUser={myUser} setDate={setDate} date={date}/> : null }
   </>
   );
 }
