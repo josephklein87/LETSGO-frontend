@@ -7,7 +7,64 @@ function Mainpage(props) {
 
     let [modal, setModal] = useState({})
     let [showModal, setShowModal] = useState(false)
+    let [modalFav, setModalFav] = useState(false)
     let [showEditForm, setShowEditForm] = useState(false)
+    let [mySubmitted, setMySubmitted] = useState("my-submitted selected")
+    let [mySaved, setMySaved] = useState("my-saved")
+
+
+  const checkFavs = () => {
+    console.log(props.favs)
+    for (let i = 0; i < props.favs.length; i++) {
+      if (props.favs[i].event_id === modal.id) {
+        setModalFav(true)
+        return
+      } else {
+        setModalFav(false)
+      }
+    }
+    
+  }
+
+  const deleteFav = () => {
+   
+    axios.delete(`http://localhost:3000/events/deleteFav/${props.myUser.username}/${modal.id}`).then(res=>{
+        props.setFavs(res.data)
+    })
+  }
+    
+
+    const toggleSubmittedSaved = (e) => {
+        let profileObject = {
+            thisUser: props.myUser.username
+          }
+        if (e.target.id === "submitted") {
+            setMySubmitted("my-submitted selected")
+            setMySaved("my-saved")
+            axios.put('http://localhost:3000/events/myEvents', profileObject).then(res=>{
+                console.log(res.data)
+                props.setEvents(res.data)
+            })
+        } else if (e.target.id === "saved") {
+            setMySaved("my-saved selected")
+            setMySubmitted("my-submitted")
+            axios.put('http://localhost:3000/events/savedEvents', profileObject).then(res=>{
+                console.log(res.data)
+                props.setEvents(res.data)
+            })
+        }
+
+    }
+
+    const addFavorite = (eventID) => {
+        let favObj = {
+            thisUser: props.myUser.username,
+            thisEvent: eventID
+        }
+        axios.post('http://localhost:3000/events/addFav', favObj).then(res => {
+            props.getFavs()
+        })
+    }
 
     const datePicker = (e) => {
         let dateObj = {
@@ -59,6 +116,10 @@ function Mainpage(props) {
         )
     }
 
+    useEffect(()=>{
+        checkFavs()
+      }, [modal, props.favs])
+
     return(
     <>
     <div className='header-container'>
@@ -82,7 +143,11 @@ function Mainpage(props) {
     </div>
 
     {props.pageState === "my-events" && props.myUser.username ?
-        <h4 className='my-submitted'>MY SUBMITTED EVENTS</h4> : 
+    <div className='user-profile-header'>
+        <h4 className={mySubmitted} id="submitted" onClick={toggleSubmittedSaved}>SUBMITTED EVENTS</h4>
+        <h4 className={mySaved} id="saved" onClick={toggleSubmittedSaved}>SAVED EVENTS</h4>
+        </div> 
+        :
         null
     }
     <div className='events-container'>
@@ -124,6 +189,21 @@ function Mainpage(props) {
             <p className='description'>{modal.description}</p>
             <a href={modal.link}>LINK TO EVENT</a>
             <br />
+            {props.myUser.username ? 
+            <>
+                {modalFav ? 
+                    <span class="material-symbols-outlined favorite-checked" onClick={deleteFav}>
+                        favorite
+                    </span>
+                    :
+                    <span class="material-symbols-outlined favorite-unchecked" onClick={()=>{addFavorite(modal.id)}}>
+                        favorite
+                    </span>
+                }
+                </>
+                :
+                null
+            }
             <div className='button-div'>
             
             {modal.submitted_by === props.myUser.username ?

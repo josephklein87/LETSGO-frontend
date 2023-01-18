@@ -41,27 +41,22 @@ function Add(props) {
               <br />
               <input className='form-control' type="text" name="name" onChange={handleChange} />
             </div>
-            <br />
             <div className='form-group'>
               <label htmlFor="picture">Picture:</label>
               <br />
               <input className='form-control' type="text" name="picture" onChange={handleChange}/>
             </div>
-            <br />
             <div className='form-group'>
             <label htmlFor="street">Street Address:</label>
             <br />
             <input className='form-control' type="text" name="street" onChange={handleChange}  />
             </div>
-            <br />
             
               <div className='location-row'>
                 <label htmlFor="zip">Zipcode:</label>
                 <br />
                 <input className='form-control' type="text" name="zip" onChange={handleChange} />
               </div>
-            
-            <br />
             <div className='form-group city-state-zip'>
               <div className='location-row'>
               <label htmlFor="date">Date of Event:</label>
@@ -75,17 +70,14 @@ function Add(props) {
               <input className="form-control time-event" type="time" name="time" onChange={handleChange} />
               </div>
             </div>
-            <br />
             <div className='form-group description-div'>
             <label htmlFor="description">Description:</label>
             <br />
             <textarea className='form-control' name="description" onChange={handleChange} />
-            <br />
             <label htmlFor="name">Link to Event:</label>
             <br />
             <input className="form-control" type="text" name="link" onChange={handleChange} />
             </div>
-            <br />
             <div className='form-group check-box-div'>
               <div className='check-group'>
                 <label htmlFor="name">Dog Friendly?</label>
@@ -96,7 +88,7 @@ function Add(props) {
                 <input type="checkbox" name="outdoor" onChange={handleChange} />
               </div>
             </div>
-            <br />
+
             <input className="btn btn-secondary submit-btn" type="submit" value="Submit" onChange={handleChange} />
         </form>
         </div>

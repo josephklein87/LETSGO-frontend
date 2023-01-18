@@ -10,6 +10,7 @@ import SetLocation from './components/setlocation';
 
 function App() {
   let [events, setEvents] = useState([])
+  let [favs, setFavs] = useState([])
   let [myUser, setMyUser] = useState({})
   let [goState, setGoState]=useState("go")
   let [city, setCity] = useState("")
@@ -21,7 +22,17 @@ function App() {
   const addFormToggle = () => {
     setShowAddForm(!showAddForm)
   }
-    
+
+  const getFavs = () => {
+    console.log("GET FAV")
+    const favObj = {
+      thisUser: myUser.username
+    }
+    axios.put("http://localhost:3000/events/userFavs", favObj).then((res) => {
+      console.log(res.data)
+      setFavs(res.data)
+    })
+  }
 
 
   const getEvents = () => {
@@ -71,6 +82,10 @@ function App() {
     });
   };
 
+  useEffect(()=>{
+    getFavs()
+  }, [myUser])
+
   useEffect(()=> {
     getEvents()
   }, [city]);
@@ -84,7 +99,7 @@ function App() {
 
 
   {pageState==='welcome'  ? <Welcome goState={goState} setPageState={setPageState} city={city} state={state} date={date} setCity={setCity} setState={setState} setDate={setDate}/> : null}
-  {pageState==='mainpage' || pageState === 'my-events' ? <Mainpage events={events} getEvents={getEvents} setEvents={setEvents} timeConverter={timeConverter} city={city} state={state} pageState={pageState} myUser={myUser} setDate={setDate} date={date}/> : null }
+  {pageState==='mainpage' || pageState === 'my-events' ? <Mainpage events={events} getEvents={getEvents} setEvents={setEvents} timeConverter={timeConverter} city={city} state={state} pageState={pageState} myUser={myUser} setDate={setDate} date={date} getFavs={getFavs} favs={favs} setFavs={setFavs}/> : null }
   </>
   );
 }

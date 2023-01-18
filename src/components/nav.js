@@ -147,14 +147,15 @@ function Nav(props) {
             <>
             {props.pageState !== "welcome" ?
             <>
-            <p className='nav-item' onClick={backToMainPage}>{props.city.toUpperCase()}</p>
-            <p className='nav-item' onClick={props.addFormToggle}>ADD EVENT</p>
-            <p className='nav-item' onClick={()=>{props.setPageState("welcome")}}>CHANGE CITY</p>
+            <div className='large-screen'>
+              <p className='nav-item' onClick={backToMainPage}>{props.city.toUpperCase()}</p>
+              <p className='nav-item' onClick={props.addFormToggle}>ADD EVENT</p>
+              <p className='nav-item' onClick={()=>{props.setPageState("welcome")}}>CHANGE CITY</p>
+            </div>
             </>
             :
             null
             }
-            
             <div className='user-toggle' onClick={changeArrow}>
             <span className={arrowState} >
                     change_history
@@ -164,7 +165,12 @@ function Nav(props) {
 
             <div className={dropDownState}>
             <p className='nav-item' type="button" id="profile" onClick={showMyPage}>MY PROFILE</p>
-            <p className='nav-item' type="button" id="logout" onClick={()=>{props.setMyUser({});setDropDownState("dropdown-hidden");changeArrow()}}>LOGOUT</p>
+            <div className='small-screen'>
+              <p className='nav-item' onClick={()=>{backToMainPage(); changeArrow()}}>{props.city.toUpperCase()}</p>
+              <p className='nav-item' onClick={()=>{props.addFormToggle(); changeArrow()}}>ADD EVENT</p>
+              <p className='nav-item' onClick={()=>{props.setPageState("welcome");changeArrow()}}>CHANGE CITY</p>
+            </div>
+            <p className='nav-item' type="button" id="logout" onClick={()=>{props.setMyUser({});changeArrow()}}>LOGOUT</p>
             </div>
             
             </>
@@ -202,7 +208,7 @@ function Nav(props) {
                 <br />
                 <label htmlFor="password">Password:</label>
                 <br />
-                <input className="form-control" type="text" name="password" onChange={handleChange}/>
+                <input className="form-control" type="password" name="password" onChange={handleChange}/>
                 <p className='error-field'>{error}</p>
                 <div className='button-div'>
                   <input className='btn account-submit' type="submit" value="SUBMIT" />
@@ -226,7 +232,7 @@ function Nav(props) {
                     <br />
                     <label htmlFor="password">Password:</label>
                     <br />
-                    <input className="form-control" type="text" name="password" onChange={handleChange}/>
+                    <input className="form-control" type="password" name="password" onChange={handleChange}/>
                     <p className='error-field'>{error}</p>
                     <div className='button-div'>
                       <input className='btn account-submit' type="submit" value="SUBMIT" />

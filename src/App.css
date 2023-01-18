@@ -20,7 +20,7 @@
 
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
+  'FILL' 1,
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
@@ -216,6 +216,8 @@
   color: black;
 }
 
+
+
 .arrow {
   color: rgb(239	132	90);
   transform: rotate(-90deg);
@@ -332,6 +334,18 @@
 }
 
 /* main page */
+
+
+
+.favorite-checked {
+  color: red;
+}
+
+.favorite-unchecked {
+  color: black;
+}
+
+
 .date-div {
   display: flex;
   justify-content: center;
@@ -491,11 +505,11 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.187) !important;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .create-account-container {
-  position: fixed;
+  position: absolute;
   font-family: kabel;
   color: rgb(239	132	90);
   width: 400px;
@@ -551,18 +565,17 @@
 /* add form styling */
 
 .add-form-container {
-  position: absolute;
+  position: relative;
   color: rgb(239	132	90);
   width: 40%;
+  min-width: 375px;
   background-color: rgb(250	228	150	);
   border: 2px solid rgb(239	132	90	);
-  top: 10vh;
-  left: 28vw;
   padding: 40px;
   text-align: center;
   border-radius: 20px;
   min-width: 350px;
-  overflow: scroll;
+  overflow:scroll;
 }
 
 .add-form-container h1 {
@@ -570,7 +583,7 @@
 }
 
 .add-form {
-  min-width: 350px;
+  /* min-width: 350px; */
   display: flex;
   flex-direction: column;
   margin-right: auto;
@@ -614,10 +627,37 @@
 
 /* PROFILE PAGE */
 
-.my-submitted {
+.user-profile-header {
+  display: flex;
+  justify-content: center;
+}
+
+.my-submitted, .my-saved {
   font-family: bigjohn;
   text-align: center;
+  color: rgb(239	132	90	);
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.my-submitted {
+  border-right: solid 2px black;
+  padding-right: 20px;
+}
+
+.my-submitted:hover, .my-saved:hover {
   color: black;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+.selected {
+  font-family: bigjohn;
+  text-align: center;
+  color: black !important;
+  text-shadow: 2px 2px 0px rgb(239	132	90	)!important;
 }
 
 .small-screen {
@@ -631,5 +671,48 @@
 
 .small-screen {
   display: inline;
+}
+.small-screen .nav-item:hover {
+  cursor: pointer;
+  color: black !important;
+}
+.add-form-container {
+  padding: 10px;
+}
+
+.create-account-container {
+  width: 375px;
+}
+
+.locations-div {
+  flex-direction: column;
+}
+.location-name {
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.location-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.location-item {
+  margin-left: 30px;
+}
+
+.welcome-header, .go {
+  font-size: 48px;
+  margin-top: 140px;
+
+}
+
+.locations-div {
+  margin-top: 30px;
+}
+
+.find-things {
+  font-size: 18px;
+  margin-right: 2px;
 }
 }
