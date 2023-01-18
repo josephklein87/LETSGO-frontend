@@ -597,7 +597,7 @@
 
 .city-state-zip {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .state-row {
@@ -619,6 +619,8 @@
 
 .time-event {
   width: 195px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .submit-btn {
@@ -664,6 +666,10 @@
 
 .small-screen {
   display: none
+}
+
+.time-event {
+  width: 130px;
 }
 
 @media (max-width: 540px) {
@@ -721,4 +727,5 @@
 .login-list {
   margin-top: 5px;
 }
+
 }

@@ -43,25 +43,21 @@ function Edit(props) {
               <br />
               <input className='form-control' type="text" name="name" defaultValue={props.modal.name} onChange={handleChange} />
             </div>
-            <br />
             <div className='form-group'>
               <label htmlFor="picture">Picture:</label>
               <br />
               <input className='form-control' type="text" name="picture" defaultValue={props.modal.picture} onChange={handleChange}/>
             </div>
-            <br />
             <div className='form-group'>
             <label htmlFor="street">Street Address:</label>
             <br />
             <input className='form-control' type="text" name="street" defaultValue={props.modal.street} onChange={handleChange}  />
             </div>
-            <br />
               <div className='location-row'>
                 <label htmlFor="zip">Zipcode:</label>
                 <br />
                 <input className='form-control' type="text" name="zip" defaultValue={props.modal.zip}onChange={handleChange} />
               </div>
-            <br />
             <div className='form-group city-state-zip'>
               <div className='location-row'>
               <label htmlFor="date">Date of Event:</label>
@@ -75,17 +71,14 @@ function Edit(props) {
               <input className="form-control time-event" type="time" name="time" defaultValue={props.modal.time} onChange={handleChange} />
               </div>
             </div>
-            <br />
             <div className='form-group description-div'>
             <label htmlFor="description">Description:</label>
             <br />
             <textarea className='form-control' name="description" defaultValue={props.modal.description} onChange={handleChange} />
-            <br />
             <label htmlFor="name">Link to Event:</label>
             <br />
             <input className="form-control" type="text" name="link" defaultValue={props.modal.link} onChange={handleChange} />
             </div>
-            <br />
             <div className='form-group check-box-div'>
               <div className='check-group'>
                 <label htmlFor="name">Dog Friendly?</label>
@@ -96,7 +89,7 @@ function Edit(props) {
                 <input type="checkbox" name="outdoor" defaultChecked={props.modal.outdoor} onChange={handleChange} />
               </div>
             </div>
-            <br />
+        
             <input className="btn btn-secondary submit-btn" type="submit" value="Submit" onChange={handleChange} />
         </form>
         </div>

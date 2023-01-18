@@ -88,7 +88,7 @@ function Add(props) {
                 <input type="checkbox" name="outdoor" onChange={handleChange} />
               </div>
             </div>
-
+            
             <input className="btn btn-secondary submit-btn" type="submit" value="Submit" onChange={handleChange} />
         </form>
         </div>
