@@ -164,6 +164,8 @@
 /* nav */
 
 .menu-toggle {
+  margin-top: 8px;
+  margin-right: 5px;
   color: rgb(239	132	90);
 }
 
@@ -714,5 +716,9 @@
 .find-things {
   font-size: 18px;
   margin-right: 2px;
+}
+
+.login-list {
+  margin-top: 5px;
 }
 }
