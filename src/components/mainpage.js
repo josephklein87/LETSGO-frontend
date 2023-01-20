@@ -28,7 +28,7 @@ function Mainpage(props) {
 
   const deleteFav = () => {
    
-    axios.delete(`http://localhost:3000/events/deleteFav/${props.myUser.username}/${modal.id}`).then(res=>{
+    axios.delete(`https://afternoon-lake-04423.herokuapp.com/events/deleteFav/${props.myUser.username}/${modal.id}`).then(res=>{
         props.setFavs(res.data)
     })
   }
@@ -41,14 +41,14 @@ function Mainpage(props) {
         if (e.target.id === "submitted") {
             setMySubmitted("my-submitted selected")
             setMySaved("my-saved")
-            axios.put('http://localhost:3000/events/myEvents', profileObject).then(res=>{
+            axios.put('https://afternoon-lake-04423.herokuapp.com/events/myEvents', profileObject).then(res=>{
                 console.log(res.data)
                 props.setEvents(res.data)
             })
         } else if (e.target.id === "saved") {
             setMySaved("my-saved selected")
             setMySubmitted("my-submitted")
-            axios.put('http://localhost:3000/events/savedEvents', profileObject).then(res=>{
+            axios.put('https://afternoon-lake-04423.herokuapp.com/events/savedEvents', profileObject).then(res=>{
                 console.log(res.data)
                 props.setEvents(res.data)
             })
@@ -61,7 +61,7 @@ function Mainpage(props) {
             thisUser: props.myUser.username,
             thisEvent: eventID
         }
-        axios.post('http://localhost:3000/events/addFav', favObj).then(res => {
+        axios.post('https://afternoon-lake-04423.herokuapp.com/events/addFav', favObj).then(res => {
             props.getFavs()
         })
     }
@@ -72,7 +72,7 @@ function Mainpage(props) {
             state1: props.state,
             date1: e.target.value
         }
-        axios.put('http://localhost:3000/events/date', dateObj).then(res => {
+        axios.put('https://afternoon-lake-04423.herokuapp.com/events/date', dateObj).then(res => {
             props.setEvents(res.data)
         })
     }
@@ -84,7 +84,7 @@ function Mainpage(props) {
     }
 
     const openModal=(eventID)=>{
-        axios.get('http://localhost:3000/events/' + eventID ).then((res) => {
+        axios.get('https://afternoon-lake-04423.herokuapp.com/events/' + eventID ).then((res) => {
             setModal(res.data[0])
             setShowModal(true)
         })
@@ -108,7 +108,7 @@ function Mainpage(props) {
     }
 
     const deleteEvent = (eventID) => {
-        axios.delete('http://localhost:3000/events/' + eventID).then(req => {
+        axios.delete('https://afternoon-lake-04423.herokuapp.com/events/' + eventID).then(req => {
             props.getEvents()
             setShowModal(false)
         }

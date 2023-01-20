@@ -77,7 +77,7 @@ function Nav(props) {
         }
         setCreateUser("")
         axios.post(
-          'http://localhost:3000/users/newUser',
+          'https://afternoon-lake-04423.herokuapp.com/users/newUser',
           userObj
         ).then((res)=>{
           if (res.data==="There was an error") {
@@ -102,7 +102,7 @@ function Nav(props) {
         }
         setCreateUser("")
         axios.put(
-          'http://localhost:3000/users/userLogin',
+          'https://afternoon-lake-04423.herokuapp.com/users/userLogin',
           userObj
         ).then((res)=>{
           if(res.data === "User not found") {
@@ -133,7 +133,7 @@ function Nav(props) {
         props.setPageState("my-events")
         setDropDownState("dropdown-hidden")
         changeArrow()
-        axios.put('http://localhost:3000/events/myEvents', profileObject).then(res=>{
+        axios.put('https://afternoon-lake-04423.herokuapp.com/events/myEvents', profileObject).then(res=>{
           console.log(res.data)
           props.setEvents(res.data)
         })

@@ -21,7 +21,7 @@ function Edit(props) {
     const handleSubmit = (event) => {
         console.log(newEvent)
         event.preventDefault()
-        axios.put('http://localhost:3000/events/' + props.modal.id, newEvent).then(res=>{
+        axios.put('https://afternoon-lake-04423.herokuapp.com/events/' + props.modal.id, newEvent).then(res=>{
             props.setModal(res.data[0])
             // props.setShowModal(true)
             props.toggleEdit()

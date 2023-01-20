@@ -28,7 +28,7 @@ function App() {
     const favObj = {
       thisUser: myUser.username
     }
-    axios.put("http://localhost:3000/events/userFavs", favObj).then((res) => {
+    axios.put("https://afternoon-lake-04423.herokuapp.com/events/userFavs", favObj).then((res) => {
       console.log(res.data)
       setFavs(res.data)
     })
@@ -40,7 +40,7 @@ function App() {
       city1: city,
       state1: state
     }
-    axios.put("http://localhost:3000/events/test", locationObj).then((res)=> {
+    axios.put("https://afternoon-lake-04423.herokuapp.com/events/findCity", locationObj).then((res)=> {
       console.log(res.data)
       setEvents(res.data)
       console.log(events)
@@ -75,7 +75,7 @@ function App() {
 
   const handleCreate = (addEvent) => {
     console.log("This is" + addEvent)
-    axios.post("http://localhost:3000/events", addEvent).then((response) => {
+    axios.post("https://afternoon-lake-04423.herokuapp.com/events", addEvent).then((response) => {
       console.log(response);
       getEvents();
       document.querySelector(".add-form").reset()
