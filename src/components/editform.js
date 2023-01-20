@@ -25,6 +25,7 @@ function Edit(props) {
             props.setModal(res.data[0])
             // props.setShowModal(true)
             props.toggleEdit()
+            props.getEvents()
         })
     }
 

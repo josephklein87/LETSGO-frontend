@@ -79,6 +79,7 @@ function App() {
       console.log(response);
       getEvents();
       document.querySelector(".add-form").reset()
+      addFormToggle()
     });
   };
 
