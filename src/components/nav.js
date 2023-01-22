@@ -30,7 +30,6 @@ function Nav(props) {
       } else {
         setSmallScreenDropdown("login-hidden")
       }
-      console.log(smallScreenDropdown)
     }
 
     //change back to HOME PAGE
@@ -63,7 +62,6 @@ function Nav(props) {
     //tracks change of form to create user state to submit for login or account creation, can use same function as forms cannot be open at the same time
 
     const handleChange = (event)=>{
-        console.log(createUser)
         setCreateUser({ ...createUser, [event.target.name]: event.target.value})    
     }
 
@@ -129,12 +127,10 @@ function Nav(props) {
         let profileObject = {
           thisUser: props.myUser.username
         }
-        console.log(props.myUser.username)
         props.setPageState("my-events")
         setDropDownState("dropdown-hidden")
         changeArrow()
         axios.put('https://afternoon-lake-04423.herokuapp.com/events/myEvents', profileObject).then(res=>{
-          console.log(res.data)
           props.setEvents(res.data)
         })
       }

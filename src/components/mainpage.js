@@ -14,14 +14,19 @@ function Mainpage(props) {
 
 
   const checkFavs = () => {
-    console.log(props.favs)
-    for (let i = 0; i < props.favs.length; i++) {
-      if (props.favs[i].event_id === modal.id) {
-        setModalFav(true)
-        return
-      } else {
+    console.log(modal)
+    if (props.favs.length > 0) {
+        for (let i = 0; i < props.favs.length; i++) {
+        if (props.favs[i].event_id === modal.id) {
+            setModalFav(true)
+            console.log("true")
+            return
+        } else {
+            setModalFav(false)
+        }
+        }
+    } else {
         setModalFav(false)
-      }
     }
     
   }
@@ -29,7 +34,7 @@ function Mainpage(props) {
   const deleteFav = () => {
    
     axios.delete(`https://afternoon-lake-04423.herokuapp.com/events/deleteFav/${props.myUser.username}/${modal.id}`).then(res=>{
-        props.setFavs(res.data)
+        props.getFavs();
     })
   }
     
@@ -42,15 +47,14 @@ function Mainpage(props) {
             setMySubmitted("my-submitted selected")
             setMySaved("my-saved")
             axios.put('https://afternoon-lake-04423.herokuapp.com/events/myEvents', profileObject).then(res=>{
-                console.log(res.data)
                 props.setEvents(res.data)
             })
         } else if (e.target.id === "saved") {
             setMySaved("my-saved selected")
             setMySubmitted("my-submitted")
             axios.put('https://afternoon-lake-04423.herokuapp.com/events/savedEvents', profileObject).then(res=>{
-                console.log(res.data)
                 props.setEvents(res.data)
+                console.log(res.data)
             })
         }
 
@@ -117,6 +121,10 @@ function Mainpage(props) {
     }
 
     useEffect(()=>{
+        props.getFavs()
+    }, [modal])
+
+    useEffect(()=>{
         checkFavs()
       }, [modal, props.favs])
 
@@ -178,17 +186,6 @@ function Mainpage(props) {
     <div className='event-modal'>
         <div className='event-modal-container'>
             <p className='x-event' onClick={()=>{setShowModal(false)}}>x</p>
-            <img src={modal.picture} />
-            <h1>{modal.name}</h1>
-            {modal.submitted_by ?
-            <p>Submitted by: {modal.submitted_by}</p> : null}
-            <p>{dateConverter(modal.date)}</p>
-            <p>{props.timeConverter(modal.time)}</p>
-            <p className='address'>{modal.street}</p>
-            <p className='address'>{modal.city}, {modal.state} {modal.zip}</p>
-            <p className='description'>{modal.description}</p>
-            <a href={modal.link}>LINK TO EVENT</a>
-            <br />
             {props.myUser.username ? 
             <>
                 {modalFav ? 
@@ -204,6 +201,17 @@ function Mainpage(props) {
                 :
                 null
             }
+            <img src={modal.picture} />
+            <h1>{modal.name}</h1>
+            {modal.submitted_by ?
+            <p>Submitted by: {modal.submitted_by}</p> : null}
+            <p>{dateConverter(modal.date)}</p>
+            <p>{props.timeConverter(modal.time)}</p>
+            <p className='address'>{modal.street}</p>
+            <p className='address'>{modal.city}, {modal.state} {modal.zip}</p>
+            <p className='description'>{modal.description}</p>
+            <a href={modal.link}>LINK TO EVENT</a>
+            <br />
             <div className='button-div'>
             
             {modal.submitted_by === props.myUser.username ?

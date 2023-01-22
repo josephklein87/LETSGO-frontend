@@ -16,11 +16,9 @@ function Add(props) {
         } else {
         setNewEvent({ ...newEvent, [event.target.name]: event.target.checked})  
         }
-        console.log(newEvent)
       }
 
     const handleSubmit = (event) => {
-        console.log(newEvent)
         event.preventDefault()
         props.handleCreate(newEvent)
         setNewEvent(emptyEvent)

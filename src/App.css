@@ -337,6 +337,18 @@
 
 /* main page */
 
+.favorite-checked, .favorite-unchecked {
+  font-size: 40px;
+  position:absolute;
+  top: 44px;
+  left: 50px;
+}
+
+.favorite-checked:hover, .favorite-unchecked:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all .2s ease-in-out;
+}
 
 
 .favorite-checked {
@@ -344,7 +356,7 @@
 }
 
 .favorite-unchecked {
-  color: black;
+  color: grey;
 }
 
 

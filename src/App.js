@@ -6,7 +6,6 @@ import Add from './components/Add';
 import Nav from './components/nav';
 import Welcome from './components/welcome';
 import Mainpage from './components/mainpage';
-import SetLocation from './components/setlocation';
 
 function App() {
   let [events, setEvents] = useState([])
@@ -24,12 +23,10 @@ function App() {
   }
 
   const getFavs = () => {
-    console.log("GET FAV")
     const favObj = {
       thisUser: myUser.username
     }
     axios.put("https://afternoon-lake-04423.herokuapp.com/events/userFavs", favObj).then((res) => {
-      console.log(res.data)
       setFavs(res.data)
     })
   }
@@ -41,9 +38,7 @@ function App() {
       state1: state
     }
     axios.put("https://afternoon-lake-04423.herokuapp.com/events/findCity", locationObj).then((res)=> {
-      console.log(res.data)
       setEvents(res.data)
-      console.log(events)
     } )
   }
 
@@ -74,9 +69,7 @@ function App() {
   }
 
   const handleCreate = (addEvent) => {
-    console.log("This is" + addEvent)
     axios.post("https://afternoon-lake-04423.herokuapp.com/events", addEvent).then((response) => {
-      console.log(response);
       getEvents();
       document.querySelector(".add-form").reset()
       addFormToggle()

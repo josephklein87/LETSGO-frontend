@@ -15,11 +15,9 @@ function Edit(props) {
         } else {
         setNewEvent({ ...newEvent, [event.target.name]: event.target.checked})  
         }
-        console.log(newEvent)
       }
 
     const handleSubmit = (event) => {
-        console.log(newEvent)
         event.preventDefault()
         axios.put('https://afternoon-lake-04423.herokuapp.com/events/' + props.modal.id, newEvent).then(res=>{
             props.setModal(res.data[0])
