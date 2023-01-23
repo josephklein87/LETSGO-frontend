@@ -1,6 +1,8 @@
 # LETS GO APP FRONT END
 created by Joe Klein
 
+https://letsgo.herokuapp.com/
+
 This app was created for the purpose of finding cool events in the areas of New York, Chicago and LA based on user submissions.
 
 This is accomplished through a React front-end that interacts with a Postgres backend.
