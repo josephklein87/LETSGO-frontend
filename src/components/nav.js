@@ -145,7 +145,11 @@ function Nav(props) {
             <>
             <div className='large-screen'>
               <p className='nav-item' onClick={backToMainPage}>{props.city.toUpperCase()}</p>
+              {props.pageState !== "my-events" ?
               <p className='nav-item' onClick={props.addFormToggle}>ADD EVENT</p>
+              :
+              null
+              }
               <p className='nav-item' onClick={()=>{props.setPageState("welcome")}}>CHANGE CITY</p>
             </div>
             </>

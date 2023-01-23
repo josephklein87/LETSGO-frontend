@@ -14,7 +14,6 @@ function Mainpage(props) {
 
 
   const checkFavs = () => {
-    console.log(modal)
     if (props.favs.length > 0) {
         for (let i = 0; i < props.favs.length; i++) {
         if (props.favs[i].event_id === modal.id) {
@@ -23,10 +22,28 @@ function Mainpage(props) {
             return
         } else {
             setModalFav(false)
+            if (mySaved === "my-saved selected" && props.pageState === "my-events") {
+                let profileObject = {
+                    thisUser: props.myUser.username
+                }
+                axios.put('https://afternoon-lake-04423.herokuapp.com/events/savedEvents', profileObject).then(res=>{
+                    props.setEvents(res.data)
+                    console.log(res.data)
+                })
+            }
         }
         }
     } else {
         setModalFav(false)
+        if (mySaved === "my-saved selected" && props.pageState === "my-events") {
+            let profileObject = {
+                thisUser: props.myUser.username
+            }
+            axios.put('https://afternoon-lake-04423.herokuapp.com/events/savedEvents', profileObject).then(res=>{
+                props.setEvents(res.data)
+                console.log(res.data)
+            })
+        }
     }
     
   }
@@ -162,7 +179,7 @@ function Mainpage(props) {
         {props.events.map((event => { 
             return (
             <>
-                <div className="event-frontpage-container" style={{background: `linear-gradient(
+                <div className="event-frontpage-container"  key= {event.id} style={{backgroundImage: `linear-gradient(
                 rgba(0, 0, 0, 0.2), 
                 rgba(0, 0, 0, 0.2)
                 ), url(${event.picture})`}} onClick={()=>{openModal(event.id)}}>
@@ -229,7 +246,7 @@ function Mainpage(props) {
     null
     }
     {showEditForm ? 
-    <Edit dateConverter={dateConverter} toggleEdit={toggleEdit} setModal={setModal} setShowModal={setShowModal} modal={modal}/>
+    <Edit dateConverter={dateConverter} toggleEdit={toggleEdit} setModal={setModal} setShowModal={setShowModal} modal={modal} getEvents={props.getEvents}/>
     :
     null
     }

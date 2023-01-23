@@ -39,6 +39,7 @@ function App() {
     }
     axios.put("https://afternoon-lake-04423.herokuapp.com/events/findCity", locationObj).then((res)=> {
       setEvents(res.data)
+      console.log(res.data)
     } )
   }
 
@@ -54,6 +55,9 @@ function App() {
     if (hours > 12) {
       AMPM = "PM"
       actualHour = hours - 12
+    } else if (hours == 12) {
+      actualHour = 12;
+      AMPM = "PM"
     } else if (hours === 0) {
       AMPM = 'AM'
       actualHour = 12
@@ -69,6 +73,7 @@ function App() {
   }
 
   const handleCreate = (addEvent) => {
+    console.log(addEvent)
     axios.post("https://afternoon-lake-04423.herokuapp.com/events", addEvent).then((response) => {
       getEvents();
       document.querySelector(".add-form").reset()

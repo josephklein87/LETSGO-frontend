@@ -12,13 +12,21 @@ function Add(props) {
 
     const handleChange = (event) => {
         if (event.target.type !== "checkbox") {
-        setNewEvent({ ...newEvent, [event.target.name]: event.target.value})
+        setNewEvent({ ...newEvent, [event.target.name]: event.target.value}) 
+        console.log(newEvent)
         } else {
         setNewEvent({ ...newEvent, [event.target.name]: event.target.checked})  
+        console.log(newEvent)
         }
       }
 
     const handleSubmit = (event) => {
+        let stringDescription = newEvent.description
+        let stringDescriptionReplaced = stringDescription.replace(/'/g, "''")
+        newEvent.description = stringDescriptionReplaced
+        let stringName = newEvent.name
+        let stringNameReplaced = stringName.replace(/'/g, "''")
+        newEvent.name = stringNameReplaced
         event.preventDefault()
         props.handleCreate(newEvent)
         setNewEvent(emptyEvent)

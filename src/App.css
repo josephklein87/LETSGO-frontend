@@ -448,6 +448,7 @@
   position: absolute;
   color: rgb(239	132	90);
   width: 40%;
+  max-width: 500px;
   background-color: rgb(250	228	150	);
   border: 2px solid rgb(239	132	90	);
   padding: 40px;
